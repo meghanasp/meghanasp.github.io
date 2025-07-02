@@ -1,12 +1,109 @@
-<!-- selenium.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Automation Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      color: #0d47a1;
+      text-align: center;
+    }
+    details {
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    code {
+      background-color: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #eee;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
 </head>
 <body>
   <h1>🧪 Automation Notes</h1>
   <a href="index.html">← Back to Home</a>
+
+  <details>
+    <summary>🔍 XPath: Complete Guide</summary>
+
+    <details>
+      <summary>📌 What is XPath?</summary>
+      <p>XPath (XML Path Language) is used to locate elements in an XML or HTML document. In automation tools like Selenium, XPath helps you find and interact with web elements.</p>
+    </details>
+
+    <details>
+      <summary>🛠️ How to Write XPath (with Examples)</summary>
+      <ul>
+        <li><strong>By tag name:</strong> <code>//input</code></li>
+        <li><strong>By attribute:</strong> <code>//input[@type='text']</code></li>
+        <li><strong>By multiple attributes:</strong> <code>//input[@type='text' and @name='username']</code></li>
+        <li><strong>By text:</strong> <code>//button[text()='Submit']</code></li>
+        <li><strong>By partial text:</strong> <code>//a[contains(text(),'Login')]</code></li>
+        <li><strong>Using functions:</strong> <code>//input[starts-with(@id, 'user')]</code></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>🔄 What Are XPath Axes? (with Examples)</summary>
+      <p>XPath axes let you navigate through related elements in the DOM relative to the current node.</p>
+      <ul>
+        <li><strong>child::</strong> – Direct children<br><code>//div/child::p</code></li>
+        <li><strong>parent::</strong> – Immediate parent<br><code>//label/parent::div</code></li>
+        <li><strong>ancestor::</strong> – All ancestors<br><code>//span/ancestor::div</code></li>
+        <li><strong>descendant::</strong> – All descendants<br><code>//div/descendant::a</code></li>
+        <li><strong>following::</strong> – All elements after the node<br><code>//h2/following::div</code></li>
+        <li><strong>preceding::</strong> – All elements before the node<br><code>//h2/preceding::div</code></li>
+        <li><strong>following-sibling::</strong> – Next siblings<br><code>//label/following-sibling::input</code></li>
+        <li><strong>preceding-sibling::</strong> – Previous siblings<br><code>//input/preceding-sibling::label</code></li>
+        <li><strong>self::</strong> – The node itself<br><code>//button/self::button</code></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>📈 When to Use XPath Axes?</summary>
+      <ul>
+        <li>✅ When the element has no unique attribute but is near a known element</li>
+        <li>✅ When you want to navigate to parents, children, or siblings</li>
+        <li>✅ Useful in dynamic web apps where IDs/classes change</li>
+        <li>✅ Ideal for table rows, forms, and nested structures</li>
+      </ul>
+      <p><strong>Example:</strong><br>If you want the input that comes after a label "Username":<br>
+      <code>//label[text()='Username']/following-sibling::input</code></p>
+    </details>
+
+    <details>
+      <summary>💡 Bonus: Absolute vs Relative XPath</summary>
+      <ul>
+        <li><strong>Absolute:</strong> Starts from root (fragile)<br><code>/html/body/div[1]/input</code></li>
+        <li><strong>Relative:</strong> Starts from anywhere (preferred)<br><code>//input[@id='email']</code></li>
+      </ul>
+    </details>
+
+  </details>
+
 </body>
 </html>
