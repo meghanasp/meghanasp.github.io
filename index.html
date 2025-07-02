@@ -55,19 +55,21 @@
   
   /* Responsive: Hide nav links by default on small screens */
   @media (max-width: 600px) {
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      align-items: center;
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .nav-toggle {
+        display: block;
+      }
+    
+      .nav-container.active .nav-links {
+        display: flex;
+      }
     }
-  
-    .nav-toggle {
-      display: block;
-    }
-  
-    .nav-container.active .nav-links {
-      display: flex;
-    }
+    
     main {
       max-width: 900px;
       margin: 2rem auto;
