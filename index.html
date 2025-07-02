@@ -18,16 +18,55 @@
       padding: 1rem 2rem;
       text-align: center;
     }
+    /* Navigation Styles */
     nav {
-      display: flex;
-      justify-content: center;
       background-color: #1976d2;
-      padding: 0.5rem;
     }
-    nav a {
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .nav-toggle {
+      display: none;
+      font-size: 1.5rem;
       color: white;
-      margin: 0 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .nav-links a {
+      color: white;
+      margin: 0.5rem 1rem;
       text-decoration: none;
+    }
+  
+  /* Responsive: Hide nav links by default on small screens */
+  @media (max-width: 600px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav-toggle {
+      display: block;
+    }
+  
+    .nav-container.active .nav-links {
+      display: flex;
     }
     main {
       max-width: 900px;
@@ -64,13 +103,18 @@
     <p>Selenium | Playwright | Testing | CI/CD | Best Practices</p>
   </header>
 
-  <nav>
-    <a href="selenium.html">Selenium</a>
-    <a href="playwright.html">Playwright</a>
-    <a href="automation.html">Automation</a>
-    <a href="qa.html">QA Practices</a>
-    <a href="dsa.html">DSA</a>
-  </nav>
+ <nav>
+  <div class="nav-container" id="navContainer">
+    <button class="nav-toggle" onclick="document.getElementById('navContainer').classList.toggle('active')">☰</button>
+    <div class="nav-links">
+      <a href="selenium.html">Selenium</a>
+      <a href="playwright.html">Playwright</a>
+      <a href="automation.html">Automation</a>
+      <a href="qa.html">QA Practices</a>
+      <a href="dsa.html">DSA</a>
+    </div>
+  </div>
+</nav>
 
   <main>
     <section id="selenium">
