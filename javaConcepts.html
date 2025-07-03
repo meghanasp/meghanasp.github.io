@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Java Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+    }
+    details {
+      background: #fff;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    summary {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #0d47a1;
+      cursor: pointer;
+    }
+    code, pre {
+      background-color: #eee;
+      padding: 0.5rem;
+      display: block;
+      overflow-x: auto;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 Java Guide </h1>
+
+  <details>
+    <summary>🧠 Everything You Should Know – Strings & Characters</summary>
+
+    <h3>🔠 Character Operations</h3>
+    <ul>
+      <li><code>isLetter</code>, <code>isDigit</code>, <code>isWhitespace</code>, <code>isUpperCase</code>, <code>isLowerCase</code></li>
+      <li><code>toUpperCase</code>, <code>toLowerCase</code>, <code>toTitleCase</code></li>
+      <li><code>isJavaLetter</code>, <code>compare</code>, <code>equals</code>, <code>getType</code></li>
+    </ul>
+
+    <pre><code>char c = 'A';
+System.out.println(Character.isLetter(c)); // true
+System.out.println(Character.toLowerCase('A')); // 'a'</code></pre>
+
+    <h4>🔁 Shift Character Example</h4>
+    <pre><code>String s = "Hello";
+for (int i = 0; i < s.length(); i++) {
+  int c = s.charAt(i) + 3;
+  System.out.println("Original: " + s.charAt(i) + " | Shifted: " + (char)c);
+}</code></pre>
+
+    <h3>📌 String Methods</h3>
+    <ul>
+      <li><strong>Access:</strong> <code>charAt()</code>, <code>length()</code></li>
+      <li><strong>Substrings:</strong> <code>substring()</code>, <code>indexOf()</code></li>
+      <li><strong>Case:</strong> <code>toUpperCase()</code>, <code>toLowerCase()</code>, <code>trim()</code></li>
+      <li><strong>Replace/Concat:</strong> <code>replace()</code>, <code>concat()</code>, <code>+</code></li>
+      <li><strong>Split/Check:</strong> <code>split()</code>, <code>contains()</code>, <code>startsWith()</code>, <code>equalsIgnoreCase()</code></li>
+    </ul>
+
+    <pre><code>String str = "Hello";
+System.out.println(str.length()); // 5
+System.out.println(str.substring(1, 4)); // ell
+System.out.println(str.toUpperCase()); // HELLO</code></pre>
+
+    <h3>🧪 Iterating & Manipulating</h3>
+
+    <strong>1. Using <code>charAt()</code> in loop:</strong>
+    <pre><code>String s = "example";
+for (int i = 0; i < s.length(); i++) {
+    char c = s.charAt(i);
+    System.out.print(Character.toUpperCase(c) + " ");
+}</code></pre>
+
+    <strong>2. Using <code>toCharArray()</code>:</strong>
+    <pre><code>char[] chars = s.toCharArray();
+for (int i = 0; i < chars.length; i++) {
+    chars[i] = Character.toUpperCase(chars[i]);
+}
+System.out.println(new String(chars));</code></pre>
+
+    <strong>3. Using <code>StringBuilder</code>:</strong>
+    <pre><code>StringBuilder sb = new StringBuilder();
+for (int i = 0; i < s.length(); i++) {
+    sb.append(Character.toUpperCase(s.charAt(i)));
+}
+System.out.println(sb.toString());</code></pre>
+
+    <h3>🧱 StringBuilder</h3>
+    <ul>
+      <li>Efficient, mutable</li>
+      <li>Not thread-safe</li>
+    </ul>
+    <pre><code>StringBuilder sb = new StringBuilder();
+sb.append("Hello").append(" World");
+sb.insert(5, ",");
+sb.replace(0, 5, "Hi");
+sb.reverse();
+System.out.println(sb.toString());</code></pre>
+
+    <h4>🔄 Convert to String</h4>
+    <pre><code>String result = sb.toString();</code></pre>
+
+    <h3>🛡️ StringBuffer</h3>
+    <ul>
+      <li>Thread-safe version of StringBuilder</li>
+    </ul>
+    <pre><code>StringBuffer sb = new StringBuffer();
+sb.append("Hello").append(" World");
+sb.insert(5, ",");
+sb.replace(0, 5, "Hi");
+sb.reverse();
+System.out.println(sb.toString());</code></pre>
+
+    <h3>🔚 Summary</h3>
+    <ul>
+      <li>Use <strong>StringBuilder</strong> for efficient string manipulation</li>
+      <li>Use <strong>StringBuffer</strong> if thread-safety is required</li>
+      <li>Java's <strong>Character</strong> and <strong>String</strong> classes provide powerful tools</li>
+      <li>Use <code>charAt</code>, <code>substring</code>, and <code>toCharArray</code> for character-level operations</li>
+    </ul>
+  </details>
+</body>
+</html>
