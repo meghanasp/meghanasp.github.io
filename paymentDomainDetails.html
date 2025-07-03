@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayPal: Gateway vs Wallet</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #0d47a1;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    ul, table {
+      margin-top: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #e3f2fd;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>💳 Understanding Payment Gateways & PayPal</h1>
+
+  <section>
+    <h2>📌 What is a Payment Gateway?</h2>
+    <p>A <strong>payment gateway</strong> is a secure service that transmits payment data from the customer to the processor or acquirer for approval. It acts as a digital middleman between the merchant and the customer.</p>
+    <h3>🔄 Real-life Example:</h3>
+    <p>You buy something on Amazon and pay ₹1,000 using a debit card. The payment gateway (like Razorpay or PayPal) encrypts your data and sends it to the bank for processing.</p>
+    <ul>
+      <li>Captures payment info securely</li>
+      <li>Routes it to the processor and card network</li>
+      <li>Displays success/failure to the user</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📚 Key Payment Ecosystem Roles Explained</h2>
+    <ul>
+      <li><strong>Customer:</strong> The user who initiates the payment by purchasing a product or service.</li>
+      <li><strong>Merchant:</strong> The business or individual selling the goods or services online or offline.</li>
+      <li><strong>Biller:</strong> The entity to whom the customer owes payment. Often the same as the merchant, but could be a third-party service like a utility provider.</li>
+      <li><strong>Payment Interface:</strong> The front-end UI the customer interacts with, like a checkout page or UPI app.</li>
+      <li><strong>Payment Gateway:</strong> A secure service that encrypts and forwards transaction information from the customer to the payment processor or acquiring bank.</li>
+      <li><strong>Payment Processor:</strong> The backend service that routes the transaction through the card network to the appropriate bank.</li>
+      <li><strong>Card Network:</strong> Networks like Visa, MasterCard, or RuPay that facilitate communication between banks and define transaction rules.</li>
+      <li><strong>Issuer Bank:</strong> The customer’s bank that issues the debit/credit card and authorizes the transaction.</li>
+      <li><strong>Acquirer Bank:</strong> The merchant’s bank that receives the transaction funds after processing.</li>
+      <li><strong>Provider:</strong> A bundled service provider that may offer gateway, processor, and settlement support (e.g., Razorpay, Stripe, PayPal).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>💡 How is it Different From Other Components?</h2>
+    <table>
+      <thead>
+        <tr><th>Term</th><th>Role</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Customer</td><td>Initiates payment</td><td>You</td></tr>
+        <tr><td>Merchant</td><td>Receives payment</td><td>Amazon</td></tr>
+        <tr><td>Biller</td><td>Party owed the money</td><td>BESCOM (utilities)</td></tr>
+        <tr><td>Payment Interface</td><td>UI to enter payment details</td><td>UPI app, Card form</td></tr>
+        <tr><td>Payment Gateway</td><td>Routes and secures payment info</td><td>Razorpay, Stripe, PayPal</td></tr>
+        <tr><td>Processor</td><td>Executes the transaction</td><td>Worldline, CCAvenue</td></tr>
+        <tr><td>Card Network</td><td>Connects banks, verifies data</td><td>Visa, MasterCard</td></tr>
+        <tr><td>Issuer Bank</td><td>Your bank (deducts amount)</td><td>SBI, ICICI</td></tr>
+        <tr><td>Acquirer Bank</td><td>Merchant’s bank (receives money)</td><td>Axis Bank</td></tr>
+        <tr><td>Provider</td><td>Bundles gateway, processor etc.</td><td>PayU, Stripe, PayPal</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>✅ PayPal as a Payment Gateway</h2>
+    <ul>
+      <li>Used by <strong>merchants</strong> to accept credit/debit card payments online</li>
+      <li>Acts as a <strong>gateway</strong> by encrypting and routing payment data securely</li>
+      <li>Also functions as a <strong>processor</strong> and sometimes an <strong>acquirer</strong></li>
+    </ul>
+    <h4>📌 Example:</h4>
+    <p>You pay on an e-commerce site via PayPal using a credit card (no PayPal login).</p>
+    <p><strong>Result:</strong> PayPal acts as the <em>gateway + processor</em></p>
+  </section>
+
+  <section>
+    <h2>💰 PayPal as a Wallet</h2>
+    <ul>
+      <li>When you create a PayPal account, it functions as a <strong>digital wallet</strong></li>
+      <li>Lets you <strong>store balance</strong>, link bank accounts or cards</li>
+      <li>Enables <strong>peer-to-peer money transfers</strong></li>
+    </ul>
+    <h4>📌 Example:</h4>
+    <p>You log in to PayPal and pay from your wallet balance or linked bank/card.</p>
+    <p><strong>Result:</strong> PayPal acts as the <em>wallet + payment method</em></p>
+  </section>
+
+  <section>
+    <h2>🔄 PayPal Use Cases</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Use Case</th>
+          <th>PayPal Acts As</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Merchant checkout integration</td>
+          <td>Payment gateway / processor</td>
+        </tr>
+        <tr>
+          <td>Customer uses stored balance</td>
+          <td>Digital wallet</td>
+        </tr>
+        <tr>
+          <td>Accepts card payments online</td>
+          <td>Payment gateway</td>
+        </tr>
+        <tr>
+          <td>Peer-to-peer money transfer</td>
+          <td>Wallet + P2P tool</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Meghana S P | Payment Systems Explained</p>
+  </footer>
+</body>
+</html>
