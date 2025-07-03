@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Java Guide</title>
+  <title>Java String & Character Guide</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -30,82 +30,84 @@
       color: #0d47a1;
       cursor: pointer;
     }
-    code, pre {
+    h2 {
+      margin-top: 1.5rem;
+      color: #0d47a1;
+    }
+    pre, code {
       background-color: #eee;
-      padding: 0.5rem;
+      padding: 0.75rem;
       display: block;
       overflow-x: auto;
-      border-radius: 4px;
+      border-radius: 5px;
       margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
     }
   </style>
 </head>
 <body>
-  <h1>📚 Java Guide </h1>
 
-  <details>
-    <summary>🧠 Everything You Should Know – Strings & Characters</summary>
+  <h1>📘 Java String & Character Operations</h1>
 
-    <h3>🔠 Character Operations</h3>
+  <details open>
+    <summary>📂 Expand for Full Notes</summary>
+
+    <h2>🔤 Character Class Operations</h2>
     <ul>
-      <li><code>isLetter</code>, <code>isDigit</code>, <code>isWhitespace</code>, <code>isUpperCase</code>, <code>isLowerCase</code></li>
-      <li><code>toUpperCase</code>, <code>toLowerCase</code>, <code>toTitleCase</code></li>
-      <li><code>isJavaLetter</code>, <code>compare</code>, <code>equals</code>, <code>getType</code></li>
+      <li><strong>isLetter(char ch)</strong> – Checks if it's a letter</li>
+      <li><strong>isDigit(char ch)</strong> – Checks if it's a number</li>
+      <li><strong>isWhitespace(char ch)</strong> – Checks if it's a space</li>
+      <li><strong>toUpperCase(char ch)</strong>, <strong>toLowerCase(char ch)</strong></li>
+      <li><strong>isJavaLetter(), getType(), compare(), equals()</strong></li>
     </ul>
 
     <pre><code>char c = 'A';
-System.out.println(Character.isLetter(c)); // true
+System.out.println(Character.isLetter(c));   // true
+System.out.println(Character.isDigit(c));    // false
 System.out.println(Character.toLowerCase('A')); // 'a'</code></pre>
 
-    <h4>🔁 Shift Character Example</h4>
+    <h2>🔁 Shift Characters Example (Encryption)</h2>
     <pre><code>String s = "Hello";
 for (int i = 0; i < s.length(); i++) {
   int c = s.charAt(i) + 3;
   System.out.println("Original: " + s.charAt(i) + " | Shifted: " + (char)c);
 }</code></pre>
 
-    <h3>📌 String Methods</h3>
+    <h2>🧵 String Class Methods</h2>
     <ul>
-      <li><strong>Access:</strong> <code>charAt()</code>, <code>length()</code></li>
-      <li><strong>Substrings:</strong> <code>substring()</code>, <code>indexOf()</code></li>
-      <li><strong>Case:</strong> <code>toUpperCase()</code>, <code>toLowerCase()</code>, <code>trim()</code></li>
-      <li><strong>Replace/Concat:</strong> <code>replace()</code>, <code>concat()</code>, <code>+</code></li>
-      <li><strong>Split/Check:</strong> <code>split()</code>, <code>contains()</code>, <code>startsWith()</code>, <code>equalsIgnoreCase()</code></li>
+      <li><code>length(), charAt(), substring(), indexOf(), lastIndexOf()</code></li>
+      <li><code>toUpperCase(), toLowerCase(), trim(), replace()</code></li>
+      <li><code>concat(), split(), contains(), startsWith(), endsWith()</code></li>
+      <li><code>equals(), equalsIgnoreCase(), compareTo()</code></li>
     </ul>
 
     <pre><code>String str = "Hello";
-System.out.println(str.length()); // 5
-System.out.println(str.substring(1, 4)); // ell
-System.out.println(str.toUpperCase()); // HELLO</code></pre>
+System.out.println(str.length());             // 5
+System.out.println(str.substring(1, 4));      // ell
+System.out.println(str.toUpperCase());        // HELLO
+System.out.println(str.contains("lo"));       // true</code></pre>
 
-    <h3>🧪 Iterating & Manipulating</h3>
-
-    <strong>1. Using <code>charAt()</code> in loop:</strong>
+    <h2>🔁 Looping Through Characters</h2>
+    <h3>Using <code>charAt()</code></h3>
     <pre><code>String s = "example";
 for (int i = 0; i < s.length(); i++) {
-    char c = s.charAt(i);
-    System.out.print(Character.toUpperCase(c) + " ");
+  char c = s.charAt(i);
+  System.out.print(Character.toUpperCase(c) + " ");
 }</code></pre>
 
-    <strong>2. Using <code>toCharArray()</code>:</strong>
+    <h3>Using <code>toCharArray()</code></h3>
     <pre><code>char[] chars = s.toCharArray();
 for (int i = 0; i < chars.length; i++) {
-    chars[i] = Character.toUpperCase(chars[i]);
+  chars[i] = Character.toUpperCase(chars[i]);
 }
 System.out.println(new String(chars));</code></pre>
 
-    <strong>3. Using <code>StringBuilder</code>:</strong>
-    <pre><code>StringBuilder sb = new StringBuilder();
-for (int i = 0; i < s.length(); i++) {
-    sb.append(Character.toUpperCase(s.charAt(i)));
-}
-System.out.println(sb.toString());</code></pre>
-
-    <h3>🧱 StringBuilder</h3>
-    <ul>
-      <li>Efficient, mutable</li>
-      <li>Not thread-safe</li>
-    </ul>
+    <h2>🧱 StringBuilder</h2>
+    <p>Used for mutable string operations (not thread-safe).</p>
     <pre><code>StringBuilder sb = new StringBuilder();
 sb.append("Hello").append(" World");
 sb.insert(5, ",");
@@ -113,13 +115,11 @@ sb.replace(0, 5, "Hi");
 sb.reverse();
 System.out.println(sb.toString());</code></pre>
 
-    <h4>🔄 Convert to String</h4>
+    <h3>Convert to String:</h3>
     <pre><code>String result = sb.toString();</code></pre>
 
-    <h3>🛡️ StringBuffer</h3>
-    <ul>
-      <li>Thread-safe version of StringBuilder</li>
-    </ul>
+    <h2>🛡️ StringBuffer</h2>
+    <p>Thread-safe version of StringBuilder. Use in multithreaded applications.</p>
     <pre><code>StringBuffer sb = new StringBuffer();
 sb.append("Hello").append(" World");
 sb.insert(5, ",");
@@ -127,13 +127,15 @@ sb.replace(0, 5, "Hi");
 sb.reverse();
 System.out.println(sb.toString());</code></pre>
 
-    <h3>🔚 Summary</h3>
+    <h2>✅ Summary</h2>
     <ul>
-      <li>Use <strong>StringBuilder</strong> for efficient string manipulation</li>
-      <li>Use <strong>StringBuffer</strong> if thread-safety is required</li>
-      <li>Java's <strong>Character</strong> and <strong>String</strong> classes provide powerful tools</li>
-      <li>Use <code>charAt</code>, <code>substring</code>, and <code>toCharArray</code> for character-level operations</li>
+      <li><strong>Character:</strong> Useful for checking or converting character types</li>
+      <li><strong>String:</strong> Rich, immutable, full of utilities</li>
+      <li><strong>StringBuilder:</strong> Fast for dynamic modifications</li>
+      <li><strong>StringBuffer:</strong> Use when thread safety is a concern</li>
     </ul>
+
   </details>
+
 </body>
 </html>
