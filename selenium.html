@@ -1,19 +1,235 @@
-<!-- selenium.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Selenium Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selenium + JUnit: Complete Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+    }
+    details {
+      background: #fff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    summary {
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0d47a1;
+    }
+    pre, code {
+      background-color: #eee;
+      padding: 0.5rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      display: block;
+      margin-top: 0.5rem;
+    }
+    ul {
+      margin-top: 0.5rem;
+    }
+    a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>🧪 Selenium Automation Notes</h1>
+
+<h1>🚗 Selenium + JUnit: Complete Guide</h1>
+
+<details open>
+  <summary>📘 What is Selenium?</summary>
+  <p>Selenium is a widely-used open-source tool for automating web browsers. It supports multiple languages like Java, Python, C#, and works across different browsers and platforms.</p>
+</details>
+
+<details>
+  <summary>🔧 What is JUnit?</summary>
+  <p>JUnit is a unit testing framework for Java. It’s used for writing and running repeatable automated tests, including test setup and teardown.</p>
+</details>
+
+<details>
+  <summary>⚙️ Setup with Maven</summary>
+  <pre><code>&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;
+    &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;
+    &lt;version&gt;4.11.0&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.13.2&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+</details>
+
+<details>
+  <summary>🧪 Basic Test Case</summary>
+  <pre><code>import org.junit.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GoogleTest {
+  private WebDriver driver;
+
+  @Before
+  public void setUp() {
+    driver = new ChromeDriver();
+    driver.manage().window().maximize();
+  }
+
+  @Test
+  public void testGoogleTitle() {
+    driver.get("https://www.google.com");
+    String title = driver.getTitle();
+    Assert.assertTrue(title.contains("Google"));
+  }
+
+  @After
+  public void tearDown() {
+    if (driver != null) {
+      driver.quit();
+    }
+  }
+}</code></pre>
+</details>
+
+<details>
+  <summary>📂 Project Structure</summary>
   <ul>
-    <li>WebDriver Setup</li>
-    <li>Locators and Waits</li>
-    <li>Handling Alerts, Windows</li>
-    <li>Page Object Model (POM)</li>
-    <li>TestNG/JUnit Integration</li>
+    <li><code>src/main/java</code> – Page objects & utilities</li>
+    <li><code>src/test/java</code> – Test classes</li>
+    <li><code>pom.xml</code> – Maven dependencies</li>
   </ul>
-  <a href="index.html">← Back to Home</a>
+</details>
+
+<details>
+  <summary>🧱 Page Object Model Example</summary>
+  <pre><code>public class LoginPage {
+  private WebDriver driver;
+  private By username = By.id("user");
+  private By password = By.id("pass");
+  private By loginBtn = By.id("login");
+
+  public LoginPage(WebDriver driver) {
+    this.driver = driver;
+  }
+
+  public void login(String user, String pass) {
+    driver.findElement(username).sendKeys(user);
+    driver.findElement(password).sendKeys(pass);
+    driver.findElement(loginBtn).click();
+  }
+}</code></pre>
+</details>
+
+<details>
+  <summary>📸 Taking Screenshots</summary>
+  <pre><code>File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+FileUtils.copyFile(srcFile, new File("screenshot.png"));</code></pre>
+</details>
+
+<details>
+  <summary>🧠 Popular Selenium Code Snippets</summary>
+  <pre><code>// Click element
+driver.findElement(By.id("submit")).click();
+
+// Send keys
+driver.findElement(By.name("username")).sendKeys("admin");
+
+// Dropdown
+Select select = new Select(driver.findElement(By.id("dropdown")));
+select.selectByVisibleText("Option");
+
+// Alert
+Alert alert = driver.switchTo().alert();
+alert.accept();
+
+// Explicit Wait
+WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
+
+// Actions (hover)
+Actions actions = new Actions(driver);
+actions.moveToElement(driver.findElement(By.id("menu"))).perform();
+
+// Scroll
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+// IFrame
+driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
+
+// Upload
+driver.findElement(By.id("fileInput")).sendKeys("C:\\\\file.txt");</code></pre>
+</details>
+
+<details>
+  <summary>💡 Best Practices</summary>
+  <ul>
+    <li>Use Page Object Model</li>
+    <li>Use waits properly</li>
+    <li>Keep tests atomic and independent</li>
+    <li>Run tests headlessly in CI</li>
+    <li>Use proper assertions and logging</li>
+  </ul>
+</details>
+
+<details>
+  <summary>🔁 CI/CD with GitHub Actions</summary>
+  <pre><code># .github/workflows/selenium.yml
+name: Selenium Tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+      - name: Install Maven
+        run: sudo apt-get install -y maven
+      - name: Run Tests
+        run: mvn test</code></pre>
+</details>
+
+<details>
+  <summary>🎤 Top Selenium + JUnit Interview Questions</summary>
+  <ul>
+    <li><strong>Q:</strong> Difference between @Before and @BeforeClass?<br>A: @Before runs before every test, @BeforeClass runs once before all tests.</li>
+    <li><strong>Q:</strong> What are different waits in Selenium?<br>A: Implicit, Explicit, and Fluent wait.</li>
+    <li><strong>Q:</strong> Difference between close() and quit()?<br>A: close() closes current window, quit() quits entire session.</li>
+    <li><strong>Q:</strong> Handle dynamic elements?<br>A: Use Explicit wait with ExpectedConditions.</li>
+    <li><strong>Q:</strong> Handle multiple windows?<br>A: Use getWindowHandles() and switchTo().window().</li>
+    <li><strong>Q:</strong> Handle dropdowns without Select?<br>A: Use click + XPath/CSS for each option.</li>
+    <li><strong>Q:</strong> Handle CAPTCHA?<br>A: CAPTCHA must be disabled or mocked.</li>
+    <li><strong>Q:</strong> Take screenshots?<br>A: Use TakesScreenshot interface.</li>
+    <li><strong>Q:</strong> Handle iFrames?<br>A: switchTo().frame() method.</li>
+    <li><strong>Q:</strong> Handle alerts?<br>A: switchTo().alert().accept()/dismiss().</li>
+    <li><strong>Q:</strong> Most common exceptions?<br>A: NoSuchElementException, StaleElementReferenceException, TimeoutException.</li>
+    <li><strong>Q:</strong> Use of JavascriptExecutor?<br>A: Scroll or perform JS-based actions.</li>
+    <li><strong>Q:</strong> Best design patterns?<br>A: Page Object Model, Factory Pattern, Singleton (WebDriver).</li>
+    <li><strong>Q:</strong> Can you test APIs with Selenium?<br>A: No, use tools like REST Assured or Postman.</li>
+  </ul>
+</details>
+
 </body>
 </html>
