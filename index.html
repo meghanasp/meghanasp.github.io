@@ -97,6 +97,22 @@
       padding: 2px 6px;
       border-radius: 4px;
     }
+    blockquote {
+      border-left: 4px solid #1976d2;
+      margin: 1rem 0;
+      padding-left: 1rem;
+      font-style: italic;
+      background-color: #f1f8ff;
+      border-radius: 4px;
+    }
+    blockquote p {
+      margin: 0.5rem 0;
+    }
+    blockquote small {
+      font-style: normal;
+      font-weight: 600;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -105,64 +121,58 @@
     <p>Selenium | Playwright | Testing | CI/CD | Best Practices</p>
   </header>
 
- <nav>
-  <div class="nav-container" id="navContainer">
-    <button class="nav-toggle" onclick="document.getElementById('navContainer').classList.toggle('active')">☰</button>
-    <div class="nav-links">
-      <a href="selenium.html">Selenium</a>
-      <a href="playwright.html">Playwright</a>
-      <a href="automation.html">Automation</a>
-      <a href="qa.html">QA Practices</a>
-      <a href="dsa.html">DSA</a>
-      <a href="paymentDomainDetails.html">Payment Domain Details</a>
-    </div>
-  </div>
-</nav>
+  <nav>
+    <div class="nav-container" id="navContainer">
+      <button class="nav-toggle" onclick="document.getElementById('navContainer').classList.toggle('active')">☰</button>
+      <div class="nav-links">
+        <a href="selenium.html">Selenium</a>
+        <a href="playwright.html">Playwright</a>
+        <a href="automation.html">Automation</a>
+        <a href="qa.html">QA Practices</a>
+        <a href="dsa.html">DSA</a>
+        <a href="paymentDomainDetails.html">Payment Domain Details</a>
+      </div>
+      </div>
+  </nav>
 
   <main>
-    <section id="selenium">
-      <h2>🧪 Selenium Basics</h2>
-      <ul>
-        <li>WebDriver Setup (ChromeDriver, FirefoxDriver)</li>
-        <li>Locators: <code>id</code>, <code>xpath</code>, <code>cssSelector</code>, etc.</li>
-        <li>Waits: Implicit vs Explicit</li>
-        <li>Page Object Model (POM)</li>
-      </ul>
+    <section id="welcome">
+      <h2>👋 Welcome to My Learning Journal</h2>
+      <p>Welcome to my page where I’ve captured notes and concepts from my journey in <strong>Java Development</strong> and <strong>Test Automation</strong>. This space is a growing collection of what I learn, build, and explore every day. ✨</p>
     </section>
-
-    <section id="playwright">
-      <h2>⚡ Playwright Essentials</h2>
-      <ul>
-        <li>Playwright CLI and Test Runner</li>
-        <li>Auto-waiting mechanism</li>
-        <li>Locators API and assertions</li>
-        <li>Trace Viewer & Codegen tool</li>
-      </ul>
+  
+    <section id="motivation">
+      <h2>🌟 Stay Inspired: Quotes for Learners & Builders</h2>
+      <blockquote>
+        <p>“Upskilling isn't a trend — it's a commitment to your future self.”</p>
+      </blockquote>
+      <blockquote>
+        <p>“Learn as if you will live forever, live like you will die tomorrow.”<br><small>– Mahatma Gandhi</small></p>
+      </blockquote>
+      <blockquote>
+        <p>“Continuous learning is the minimum requirement for success in any field.”</p>
+      </blockquote>
+      <blockquote>
+        <p>“It’s not that I’m so smart, it’s just that I stay with problems longer.”<br><small>– Albert Einstein</small></p>
+      </blockquote>
+      <blockquote>
+        <p>“The expert in anything was once a beginner.”</p>
+      </blockquote>
+      <blockquote>
+        <p>“Fall seven times, stand up eight.”<br><small>– Japanese Proverb</small></p>
+      </blockquote>
+      <blockquote>
+        <p>“Never stop learning, because life never stops teaching.”</p>
+      </blockquote>
+      <blockquote>
+        <p>“Growth happens when you're most uncomfortable — keep going.”</p>
+      </blockquote>
     </section>
+</main>
 
-    <section id="automation">
-      <h2>🤖 Automation Concepts</h2>
-      <ul>
-        <li>End-to-end vs Integration Testing</li>
-        <li>CI/CD using Jenkins/GitHub Actions</li>
-        <li>Cross-browser and responsive testing</li>
-        <li>Parallel test execution strategies</li>
-      </ul>
-    </section>
 
-    <section id="qa">
-      <h2>✅ QA & Best Practices</h2>
-      <ul>
-        <li>Writing maintainable test scripts</li>
-        <li>Bug reporting with clear reproduction steps</li>
-        <li>Code review checklist for QA automation</li>
-        <li>Using tools like Postman, AppScan, Kibana</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Meghana S P | Software Engineer | Bengaluru</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 Meghana S P | Software Engineer | Bengaluru</p>
+</footer>
 </body>
 </html>
