@@ -1,12 +1,211 @@
-<!-- selenium.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Playwright Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playwright: Complete Guide</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+    }
+    details {
+      background: #fff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    summary {
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #0d47a1;
+    }
+    pre, code {
+      background-color: #eee;
+      padding: 0.5rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      display: block;
+      margin-top: 0.5rem;
+    }
+    ul {
+      margin-top: 0.5rem;
+    }
+    a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>🧪 Playwright Automation Notes</h1>
-  <a href="index.html">← Back to Home</a>
+
+<h1>🎭 Everything You Should Know About Playwright</h1>
+
+<details open>
+  <summary>📘 What is Playwright?</summary>
+  <p>Playwright is a modern end-to-end automation framework from Microsoft that supports Chromium, Firefox, and WebKit browsers. It allows cross-browser testing, API testing, and parallel execution with powerful features like auto-wait, codegen, and tracing.</p>
+</details>
+
+<details>
+  <summary>⚙️ Installation & Setup</summary>
+  <pre><code>npm init -y
+npm install -D @playwright/test
+npx playwright install</code></pre>
+  <p>Use <code>npx playwright codegen &lt;url&gt;</code> to generate test code interactively.</p>
+</details>
+
+<details>
+  <summary>🧪 Writing Your First Test</summary>
+  <pre><code>import { test, expect } from '@playwright/test';
+
+test('homepage has title', async ({ page }) => {
+  await page.goto('https://example.com');
+  await expect(page).toHaveTitle(/Example/);
+});</code></pre>
+</details>
+
+<details>
+  <summary>📂 Recommended Project Structure</summary>
+  <ul>
+    <li><code>tests/</code> – Test specs</li>
+    <li><code>pages/</code> – Page Object Models</li>
+    <li><code>utils/</code> – Custom helpers</li>
+    <li><code>playwright.config.ts</code> – Configuration file</li>
+    <li><code>state.json</code> – Storage state (for login sessions)</li>
+  </ul>
+</details>
+
+<details>
+  <summary>🔍 Locators & Selectors</summary>
+  <ul>
+    <li><code>page.getByText('Login')</code></li>
+    <li><code>page.getByRole('button', { name: 'Submit' })</code></li>
+    <li><code>page.locator('#username')</code></li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ Assertions & Auto-Waiting</summary>
+  <pre><code>await expect(page.locator('h1')).toHaveText('Dashboard');
+await expect(page).toHaveURL(/dashboard/);</code></pre>
+</details>
+
+<details>
+  <summary>🧱 Page Object Model (POM)</summary>
+  <pre><code>class LoginPage {
+  constructor(page) {
+    this.page = page;
+    this.username = page.locator('#username');
+    this.password = page.locator('#password');
+    this.loginBtn = page.locator('button[type=submit]');
+  }
+
+  async login(user, pass) {
+    await this.username.fill(user);
+    await this.password.fill(pass);
+    await this.loginBtn.click();
+  }
+}
+export default LoginPage;</code></pre>
+</details>
+
+<details>
+  <summary>📦 Logging & Debugging</summary>
+  <pre><code>console.log(\"Step: Navigating to homepage\");
+await page.pause(); // pause execution
+npx playwright test --debug // start debug UI
+</code></pre>
+</details>
+
+<details>
+  <summary>📈 Tracing</summary>
+  <pre><code>// playwright.config.ts
+use: {
+  trace: 'on-first-retry',
+}</code></pre>
+  <p>Manual tracing in test:</p>
+  <pre><code>await page.tracing.start({ screenshots: true, snapshots: true });
+// perform actions
+await page.tracing.stop({ path: 'trace.zip' });</code></pre>
+</details>
+
+<details>
+  <summary>🚀 Features That Make Playwright Stand Out</summary>
+  <ul>
+    <li>Supports Chromium, Firefox, and WebKit</li>
+    <li>Built-in auto-waiting</li>
+    <li>Powerful test runner and tracing tools</li>
+    <li>Cross-browser testing in one line</li>
+    <li>Headless and headed support</li>
+    <li>Full network control (mocking, intercepting)</li>
+    <li>Supports API testing</li>
+  </ul>
+</details>
+
+<details>
+  <summary>🔁 CI/CD Example (GitHub Actions)</summary>
+  <pre><code># .github/workflows/playwright.yml
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test --reporter=html</code></pre>
+</details>
+
+<details>
+  <summary>📊 HTML Reporting</summary>
+  <pre><code>npx playwright test --reporter=html
+npx playwright show-report</code></pre>
+</details>
+
+<details>
+  <summary>📖 Best Practices</summary>
+  <ul>
+    <li>Use locators instead of hardcoded selectors</li>
+    <li>Use POM for maintainability</li>
+    <li>Keep tests atomic & independent</li>
+    <li>Use test hooks for login/setup</li>
+    <li>Use trace viewer to debug flaky tests</li>
+  </ul>
+</details>
+
+<details>
+  <summary>🎤 Top Playwright Interview Questions</summary>
+  <ul>
+    <li><strong>1. What is Playwright?</strong> <br> A Node.js library for end-to-end testing by Microsoft.</li>
+    <li><strong>2. Difference between Playwright and Selenium?</strong><br> Modern APIs, auto-waiting, tracing, faster executions.</li>
+    <li><strong>3. What is auto-waiting?</strong><br> Built-in mechanism that waits for elements before actions/assertions.</li>
+    <li><strong>4. How do you capture a screenshot?</strong><br><code>await page.screenshot({ path: 'screenshot.png' })</code></li>
+    <li><strong>5. How to handle API testing?</strong><br><code>await request.newContext().get('/api')</code></li>
+    <li><strong>6. Can you run tests in parallel?</strong><br> Yes, using config or CLI: <code>--workers=4</code></li>
+    <li><strong>7. What is Codegen?</strong><br> Tool to record and generate Playwright tests: <code>npx playwright codegen</code></li>
+    <li><strong>8. What are locators?</strong><br> Modern element selectors like <code>getByRole</code>, <code>getByLabel</code></li>
+    <li><strong>9. How to reuse login?</strong><br> Use <code>storageState</code> to persist sessions across tests.</li>
+    <li><strong>10. How to debug Playwright tests?</strong><br> Use <code>page.pause()</code>, <code>--debug</code> flag, and trace viewer.</li>
+  </ul>
+</details>
+
 </body>
 </html>
